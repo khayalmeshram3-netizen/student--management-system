@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Admin Login | StudentDesk{% endblock %}
+{% block public_content %}
+<div class="login-page">
+    <div class="login-decoration decoration-one"></div><div class="login-decoration decoration-two"></div>
+    <section class="login-card">
+        <a class="brand login-brand" href="#"><span class="brand-mark">S</span><span>Student<span class="brand-light">Desk</span></span></a>
+        <div class="login-icon">♙</div>
+        <p class="eyebrow">ADMIN PORTAL</p>
+        <h1>Welcome back</h1>
+        <p class="muted login-intro">Sign in to manage your student records.</p>
+        <form method="post" class="stack-form">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
+            <label>Username<input name="username" type="text" placeholder="Enter username" required autocomplete="username"></label>
+            <label>Password<input name="password" type="password" placeholder="Enter password" required autocomplete="current-password"></label>
+            <button class="button primary full-button" type="submit">Sign in <span>→</span></button>
+        </form>
+        <div class="demo-note"><strong>Demo login</strong><br>Username: <code>admin</code><br>Password: <code>ChangeMe123!</code></div>
+        <p class="login-foot">StudentDesk · Admin access only</p>
+    </section>
+</div>
+{% endblock %}

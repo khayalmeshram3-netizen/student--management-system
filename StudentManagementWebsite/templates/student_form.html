@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}{{ page_title }} | StudentDesk{% endblock %}
+{% block content %}
+<div class="page-heading">
+    <div><p class="eyebrow">STUDENT DIRECTORY</p><h1>{{ page_title }}</h1><p class="muted">Enter the student's details below.</p></div>
+    <a class="button secondary" href="{{ url_for('students') }}">← Back to students</a>
+</div>
+<section class="panel form-panel">
+    <form method="post" class="student-form">
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
+        <div class="form-section-title"><span class="form-section-icon">♙</span><div><h2>Personal information</h2><p class="muted">Basic details for the student record.</p></div></div>
+        <div class="form-grid">
+            <label>Full name <span>*</span><input name="name" type="text" placeholder="e.g. Aditi Sharma" value="{{ request.form.get('name', student.name if student else '') }}" required maxlength="100"></label>
+            <label>Email address <span>*</span><input name="email" type="email" placeholder="e.g. aditi@example.com" value="{{ request.form.get('email', student.email if student else '') }}" required maxlength="150"></label>
+            <label>Age <span>*</span><input name="age" type="number" min="1" max="120" placeholder="e.g. 19" value="{{ request.form.get('age', student.age if student else '') }}" required></label>
+            <label>Course <span>*</span><input name="course" type="text" placeholder="e.g. BCA" value="{{ request.form.get('course', student.course if student else '') }}" required maxlength="100"></label>
+            <label class="marks-field">Marks (0–100) <span>*</span><input name="marks" type="number" min="0" max="100" step="0.01" placeholder="e.g. 85" value="{{ request.form.get('marks', student.marks if student else '') }}" required><small class="muted">Grade is calculated automatically.</small></label>
+        </div>
+        <div class="form-actions"><a class="button secondary" href="{{ url_for('students') }}">Cancel</a><button class="button primary" type="submit">{{ 'Save changes' if student else 'Add student' }} <span>→</span></button></div>
+    </form>
+</section>
+{% endblock %}
